@@ -15,7 +15,7 @@ const bio = ref('')
 
 <template>
   <form @submit.prevent="enviar">
-    <div></div>
+    <div>
       <p>Digite seu nome: </p>
       <input type="text" v-model="nome" />
       <p>Digite seu email: </p>
@@ -67,12 +67,11 @@ const bio = ref('')
       <p>Biografia:</p>
       <input type="text" v-model="bio" />
     </div>
-
-    <button type='submit'></button>
+    <button type='submit'> enviar</button>
   </form>
 
   <div>
-    <p>Dados:</p>
+    <p>Dados Preenchidos</p>
 
       <p>Nome: {{ nome }}</p>
       <p>E-mail: {{ email }}</p>
