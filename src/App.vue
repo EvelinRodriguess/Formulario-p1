@@ -25,7 +25,7 @@ const bio = ref('')
       <p>Confirme sua senha: </p>
       <input type="password" v-model="confirmacao" />
       <p>Data de nascimento: </p>
-      <input type="number" v-model="nascimento" />
+      <input type="data" v-model="nascimento" />
       <p>Endereço:</p>
       <input type="text" v-model="endereco" />
       <p>cidade:</p>
@@ -81,6 +81,7 @@ const bio = ref('')
       <p>Endereço: {{ endereco }}</p>
       <p>Cidade: {{ cidade }}</p>
       <p>Estado: {{ estado }}</p>
+      <p>Biografia: {{ bio }}</p>
 
   </div>
 </template>
