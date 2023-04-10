@@ -11,26 +11,29 @@ const estado = ref('')
 const hobbies = ref('')
 const lingProg = ref('')
 const bio = ref('')
+const enviar = ref(false)
+
 </script>
 
 <template>
+  <h1 class="titulo">FORMS</h1>
   <form @submit.prevent="enviar">
-    <div>
+    <div class="informacao">
       <p>Digite seu nome: </p>
       <input type="text" v-model="nome" />
       <p>Digite seu email: </p>
       <input type="email" v-model="email" />
       <p>Digite sua senha: </p>
-      <input type="password" v-model="senha" />
+      <input type="password" v-model="senha" maxlength="8" />
       <p>Confirme sua senha: </p>
-      <input type="password" v-model="confirmacao" />
-      <p>Data de nascimento: </p>
+      <input type="password" v-model="confirmacao" maxlength="8"/>
+      <p>Informe sua data de nascimento: </p>
       <input type="data" v-model="nascimento" />
-      <p>Endereço:</p>
+      <p>Informe seu endereço:</p>
       <input type="text" v-model="endereco" />
-      <p>cidade:</p>
+      <p>Informe a cidade que você mora:</p>
       <input type="string" v-model="cidade" />
-      <p>Estado:</p>
+      <p>Informe o estado que você mora:</p>
       <select v-model="estado">
         <option value="ac">ACRE</option>
         <option value="al">ALAGOAS</option>
@@ -67,23 +70,41 @@ const bio = ref('')
       <p>Biografia:</p>
       <input type="text" v-model="bio" />
     </div>
-    <button type='submit'> enviar</button>
+    <br>
+    <button @click="enviar">enviar</button>
+    <br>
   </form>
+  <hr>
 
-  <div>
-    <p>Dados Preenchidos</p>
-
-      <p>Nome: {{ nome }}</p>
-      <p>E-mail: {{ email }}</p>
-      <p>Senha: {{ senha }}</p>
-      <p>Senha Confirmada: {{ confirmacao }}</p>
-      <p>Data de Nascimento: {{ nascimento }}</p>
-      <p>Endereço: {{ endereco }}</p>
-      <p>Cidade: {{ cidade }}</p>
-      <p>Estado: {{ estado }}</p>
-      <p>Biografia: {{ bio }}</p>
+  <div class="dados">
+    <br>
+    <p class="titulo">Dados Preenchidos:</p>
+    <br>
+    <p>Nome: {{ nome }}</p>
+    <input type="text" v-model="nome" readonly />
+    <p>E-mail: {{ email }}</p>
+    <input type="text" v-model="email" readonly />
+    <p>Senha: {{ senha }}</p>
+    <input type="text" v-model="senha" readonly />
+    <p>Senha Confirmada: {{ confirmacao }}</p>
+    <input type="text" v-model="confirmacao" readonly />
+    <p>Data de Nascimento: {{ nascimento }}</p>
+    <input type="text" v-model="nascimento" readonly />
+    <p>Endereço: {{ endereco }}</p>
+    <input type="text" v-model="endereco" readonly />
+    <p>Cidade: {{ cidade }}</p>
+    <input type="text" v-model="cidade" readonly />
+    <p>Estado: {{ estado }}</p>
+    <input type="text" v-model="estado" readonly />
+    <p>Biografia: {{ bio }}</p>
+    <input type="text" v-model="bio" readonly />
 
   </div>
+
 </template>
+
+
+
+
 
 
