@@ -12,39 +12,11 @@ const hobbies = ref('')
 const lingProg = []
 const bio = ref('')
 const enviar = ref(false)
-const erro = ref('')
 
-function validacao() {
-  erro.value = ''
-
-  if (!nome.value) {
-    erro.value = 'Por favor, digite seu nome.'
-    return
-  }
-
-  if (!email.value) {
-    erro.value = 'Por favor, digite seu e-mail.'
-    return
-  }
-
-  if (!senha.value) {
-    erro.value = 'Por favor, digite sua senha.'
-    return
-  }
-
-  if (senha.value !== confirmacao.value) {
-    erro.value = 'A senha e a confirmação de senha não são iguais.'
-    return
-  }
-
-  enviar.value = true
-}
 </script>
 
 <template>
-  <h1 class="titulo">FORMS</h1>
-  <form @submit.prevent="validacao">
-
+  <form @submit.prevent="enviar=!enviar">
     <div class="informacao">
 
       <label for="nome">Nome</label>
@@ -66,7 +38,7 @@ function validacao() {
       <input type="text" v-model="endereco" placeholder="Digite seu endereço" />
 
       <label for="cidade">Cidade</label>
-      <input type="string" v-model="cidade" placeholder="Digite o nome de sua cidade"  />
+      <input type="string" v-model="cidade" placeholder="Digite o nome de sua cidade" />
 
       <label for="estado">Estado</label>
       <select v-model="estado">
@@ -98,40 +70,37 @@ function validacao() {
         <option value="se">SERGIPE</option>
         <option value="to">TOCANTINS</option>
       </select>
-      
-      <label for="hobbies"> Hobbies </label>
-      <input type="checkbox" v-model="hobbies" value="volei"/> VOLEI
-      <input type="checkbox" v-model="hobbies" value="fut" /> FUTEBOL
-      <input type="checkbox" v-model="hobbies" value="ler" /> LER
-      <input type="checkbox" v-model="hobbies" value="out" /> OUTROS
 
-      <label for="lingProg">Linguagens de programação </label>
+      <label for="hobbies">Hobbies</label>
+      <input type="string" v-model="hobbies" placeholder="Digite algum hobbie" />
+
+      <p>Linguagens de Programação:</p>
+
       <input type="checkbox" v-model="lingProg" value="php" /> PHP
-      <input type="checkbox" v-model="lingProg" value="ja" /> JAVA
-      <input type="checkbox" v-model="lingProg" value="js" /> JAVASCRIPT
-      <input type="checkbox" v-model="lingProg" value="py" /> PYTHON
-      <input type="checkbox" v-model="lingProg" value="C" /> C++
-      <input type="checkbox" v-model="lingProg" value="ts" /> TYPESCRIPT
-      <input type="checkbox" v-model="lingProg" value="out" /> OUTRA
+      <input type="checkbox" v-model="lingProg" value="java" /> JAVA
+      <input type="checkbox" v-model="lingProg" value="javascript" /> JAVASCRIPT
+      <input type="checkbox" v-model="lingProg" value="python" /> PYTHON
+      <input type="checkbox" v-model="lingProg" value="c++" /> C++
+      <input type="checkbox" v-model="lingProg" value="typescript" /> TYPESCRIPT
+      <input type="checkbox" v-model="lingProg" value="outra" /> OUTRA
 
       <label for="bio">Biografia</label>
       <input type="text" v-model="bio" placeholder="Conte um pouco sobre você" />
 
     </div>
     <br>
-    
-    <button @click="enviar">enviar</button>
+
+    <button type="submit">Enviar</button>
 
     <br>
   </form>
 
   <hr>
 
-  <div class="dados">
-   <br>
+  <div v-if= "enviar" class="dados">
+
 
     <p class="titulo">Dados Preenchidos:</p>
-    <br>
     
     <label for="nome">Nome informado</label>
     <input type="text" v-model="nome" readonly />
@@ -157,7 +126,6 @@ function validacao() {
     <label for="estado">Estado informado</label>
     <input type="text" v-model="estado" readonly />
 
-
     <label for="hobbies">Hobbie informado</label>
     <input type="text" v-model="hobbies" readonly />
 
@@ -167,87 +135,89 @@ function validacao() {
     <label for="bio">Biografia</label>
     <input type="text" v-model="bio" readonly />
   </div>
-
 </template>
 
 <style>
 
-  .titulo {
-    text-align: center;
-    font-size: 2rem;
-  }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+.titulo {
+  text-align: center;
+  font-size: 40px;
+}
 
-  .informacao {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
 
-  select {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
+.informacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
 
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="data"] {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+}
 
-  button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: none;
-    background-color: #0077cc;
-    color: white;
-    cursor: pointer;
-  }
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="string"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid #030303;
+}
 
-  .dados {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-  }
+button {
+  padding: 20px 40px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #0077cc;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
 
-  .dados p {
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    font-weight: bold;
-  }
+.dados {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+}
 
-  .dados input[type="text"] {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #f0f0f0;
-  }
+.dados p {
+  margin-top: 5px;
+  margin-bottom: 1opx;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.dados input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  background-color: #8dbadf;
+}
 </style>
 
 
